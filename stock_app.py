@@ -436,7 +436,7 @@ class UniversalStockAgent:
         # Use a more powerful model with higher limits
         self.llm = ChatOpenAI(
             temperature=0,
-            model="gpt-3.5-turbo", 
+            model="gpt-4o", 
             openai_api_key=openai_api_key,
             request_timeout=120  # Increase timeout
         )
@@ -704,6 +704,8 @@ class UniversalStockAgent:
             )
             ai_response = agent({"input": user_query})["output"]
 
+            print(f"ai_response:{ai_response}")
+
             symbol = self._extract_symbol_from_query(user_query)
             period = self._extract_period_from_query(user_query)
 
@@ -810,6 +812,8 @@ if st.button("🚀 Analyze", type="primary") or 'user_query' in st.session_state
             # Create agent fresh for each query
             agent = UniversalStockAgent(openai_key)
             result = agent.process_query(query_to_process)
+
+            print(f"agent result:{result}")
             
             if result["success"]:
                 st.success("✅ Analysis Complete!")
