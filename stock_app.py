@@ -74,6 +74,7 @@ class AlphaVantageMCPServer:
             }
             
             response = requests.get(self.base_url, params=params)
+            print(f"Response URL -->>"+response)
             if response.status_code == 200:
                 data = response.json()
                 if "Time Series (Daily)" in data:
@@ -873,20 +874,20 @@ st.sidebar.info("💡 The AI will automatically choose which tools to use based 
 st.subheader("💬 Ask About ANY Stock")
 
 # Example queries - including new stocks
-st.write("**Try these examples:**")
-example_queries = [
-    "Show me PLTR stock for last 6 months",
-    "Analyze Palantir Technologies",
-    "Find biotech companies",
-    "What about Shopify stock?",
-    "COIN stock performance and analysis"
-]
+# st.write("**Try these examples:**")
+# example_queries = [
+#     "Show me PLTR stock for last 6 months",
+#     "Analyze Palantir Technologies",
+#     "Find biotech companies",
+#     "What about Shopify stock?",
+#     "COIN stock performance and analysis"
+# ]
 
-cols = st.columns(2)
-for i, example in enumerate(example_queries):
-    with cols[i % 2]:
-        if st.button(f"💬 {example}", key=f"example_{i}"):
-            st.session_state.user_query = example
+# cols = st.columns(2)
+# for i, example in enumerate(example_queries):
+#     with cols[i % 2]:
+#         if st.button(f"💬 {example}", key=f"example_{i}"):
+#             st.session_state.user_query = example
 
 # User input
 user_query = st.text_input(
