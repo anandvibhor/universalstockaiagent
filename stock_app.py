@@ -74,7 +74,8 @@ class AlphaVantageMCPServer:
             }
             
             response = requests.get(self.base_url, params=params)
-            print(f"Response URL -->>"+response)
+            #response= requests.get(self.base_url)
+            print("<--Response of Vantage MCP Server-->>> " + response.text)
             if response.status_code == 200:
                 data = response.json()
                 if "Time Series (Daily)" in data:
